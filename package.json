@@ -1,0 +1,36 @@
+{
+  "name": "solulab-assignment",
+  "version": "1.0.0",
+  "description": "Cab service kind of a thing",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amankori2307/sulolab-assignment.git"
+  },
+  "keywords": [
+    "User",
+    "Ola",
+    "Cab",
+    "Service"
+  ],
+  "author": "Aman Kori",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Amankori2307/sulolab-assignment/issues"
+  },
+  "homepage": "https://github.com/Amankori2307/sulolab-assignment#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  }
+}
