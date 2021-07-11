@@ -7,8 +7,8 @@ const User = require('../models/User')
 
 const tokenExtractor = (req) => {
     var token = null;
-    if(req.cookies && req.cookies['access_token']){
-        token = req.cookies['access_token']
+    if(req.header('x-auth-header')){
+        token = req.header('x-auth-header')
     }
     return token
 }
@@ -18,12 +18,10 @@ const tokenExtractor = (req) => {
 passport.use(new JWTStrategy({
     jwtFromRequest: tokenExtractor,
     secretOrKey: SECRET_KEY
-}, (payload, done) => {
-    User.findById({_id: payload.sub}, (err, user) => {
-        if(err) done(err);
-        if(!user) done(null, false);
-        done(null, user);
-    })
+}, async (payload, done) => {
+    var user = await User.findById({_id: payload.sub}).select("-password")
+    if(!user) done(null, false);
+    done(null, user);
 }))
 
 

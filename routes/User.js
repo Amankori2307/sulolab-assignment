@@ -33,9 +33,16 @@ router.post("/register", registerValidation, validateRequest, async (req, res) =
 })
 
 router.post("/login", loginValidations, validateRequest, passport.authenticate('local', {session: false}),  async (req, res) => {
-    if(req.isAuthenticated){
+    if(req.isAuthenticated()){
         const token = signToken(req.user._id);
         return res.json(genResponse(false, true, "Logged In successfully", {auth_token: token}))
+    }
+})
+
+
+router.get("/auth", passport.authenticate("jwt", {session: false}), (req, res) => {
+    if(req.isAuthenticated()){
+        return res.json(genResponse(false, true, "User Data",req.user))
     }
 })
 
